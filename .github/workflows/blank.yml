@@ -59,6 +59,9 @@ jobs:
         export KBUILD_BUILD_USER=zhlhlf
         make O=out CC="ccache clang" CXX="ccache clang++" ARCH=arm64 CROSS_COMPILE=$CLANG_PATH/bin/aarch64-linux-gnu- CROSS_COMPILE_ARM32=$CLANG_PATH/bin/arm-linux-gnueabi- LD=ld.lld ${{ github.event.inputs.KERNEL_DEFCONFIG }}
         make O=out CC="ccache clang" CXX="ccache clang++" ARCH=arm64 CROSS_COMPILE=$CLANG_PATH/bin/aarch64-linux-gnu- CROSS_COMPILE_ARM32=$CLANG_PATH/bin/arm-linux-gnueabi- LD=ld.lld 2>&1 | tee kernel.log
+
+        echo "----------------------"
+        echo "----------------------"
         git clone --depth=1 https://github.com/zhlhlf/AnyKernel3 AnyKernel3
         rm -rf AnyKernel3/.git
         mv out/arch/arm64/boot/dtbo.img AnyKernel3
