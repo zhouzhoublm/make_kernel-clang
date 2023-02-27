@@ -7,12 +7,12 @@ on:
       KERNEL_SOURCE:
         description: 'Kernel Source'
         required: true
-        default: 'https://github.com/YumeMichi/kernel_oneplus_sm8250'
+        default: 'https://github.com/arnavpuranik/kernel_oneplus_sm8250'
         
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
         required: true
-        default: 'topaz-new'
+        default: 'rebase'
         
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
@@ -64,9 +64,9 @@ jobs:
         echo "----------------------"
         git clone --depth=1 https://github.com/zhlhlf/AnyKernel3 AnyKernel3
         rm -rf AnyKernel3/.git
-        mv out/arch/arm64/boot/dtbo.img AnyKernel3
-        mv out/arch/arm64/boot/Image AnyKernel3
-        mv kernel.log AnyKernel3
+        mv arch/arm64/boot/dtbo.img AnyKernel3/
+        mv arch/arm64/boot/Image AnyKernel3/
+        mv kernel.log AnyKernel3/
 
     - name: Upload AnyKernel3
       uses: actions/upload-artifact@v3
