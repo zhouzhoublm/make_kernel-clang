@@ -59,9 +59,13 @@ jobs:
         export KBUILD_BUILD_USER=zhlhlf
         make O=out CC="ccache clang" CXX="ccache clang++" ARCH=arm64 CROSS_COMPILE=$CLANG_PATH/bin/aarch64-linux-gnu- CROSS_COMPILE_ARM32=$CLANG_PATH/bin/arm-linux-gnueabi- LD=ld.lld ${{ github.event.inputs.KERNEL_DEFCONFIG }}
         make O=out CC="ccache clang" CXX="ccache clang++" ARCH=arm64 CROSS_COMPILE=$CLANG_PATH/bin/aarch64-linux-gnu- CROSS_COMPILE_ARM32=$CLANG_PATH/bin/arm-linux-gnueabi- LD=ld.lld 2>&1 | tee kernel.log
+        git clone --depth=1 https://github.com/zhlhlf/AnyKernel3 AnyKernel3
+        rm -rf AnyKernel3/.git
+        mv out/arch/arm64/boot/dtbo.img AnyKernel3
+        mv out/arch/arm64/boot/Image AnyKernel3
+        mv kernel.log AnyKernel3
 
     - name: Upload AnyKernel3
-      if: env.CHECK_KERNEL_FILE_IS_OK == 'true'
       uses: actions/upload-artifact@v3
       with:
         name: AnyKernel3${{ github.event.inputs.UPLOADNAME }}-${{ github.event.inputs.DEVICE }}-${{ github.event.inputs.BUILD_TIME }}
