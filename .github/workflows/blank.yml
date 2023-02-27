@@ -41,7 +41,7 @@ jobs:
     - name: 下载clang和内核源码
       run: |
         mkdir clang
-        aris2c -j10 "${{ github.event.inputs.CLANG_URL }}" -O clang.tar.gz
+        aria2c -j10 "${{ github.event.inputs.CLANG_URL }}" -O clang.tar.gz
         tar -C clang/ -zxf clang.tar.gz
         git clone --depth=1 ${{ github.event.inputs.KERNEL_SOURCE }} -b ${{ github.event.inputs.KERNEL_SOURCE_BRANCH }} android-kernel
 
