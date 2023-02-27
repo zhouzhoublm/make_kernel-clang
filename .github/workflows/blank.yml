@@ -22,7 +22,7 @@ on:
       CLANG_URL:
         description: 'Clang URL'
         required: true
-        default: 'https://github.com/ZyCromerZ/Clang/releases/download/17.0.0-20230217-release/Clang-17.0.0-20230217.tar.gz'
+        default: 'https://github.com/ZyCromerZ/Clang/releases/download/14.0.0-20211201-release/Clang-14.0.0-20211201.tar.gz'
 
 jobs:
   build:
