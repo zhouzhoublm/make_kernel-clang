@@ -55,7 +55,6 @@ jobs:
     - name: 安装kernelSU
       if: github.event.inputs.USE_KERNELSU == 'true'
       run: |
-            if [ ${{ github.event.inputs.USE_KPROBES }} = true ] ; then
             cd android-kernel
             echo "CONFIG_MODULES=y" >> arch/${{ env.TARGET_ARCH }}/configs/${{ env.KERNEL_DEFCONFIG }}
             echo "CONFIG_KPROBES=y" >> arch/${{ env.TARGET_ARCH }}/configs/${{ env.KERNEL_DEFCONFIG }}
