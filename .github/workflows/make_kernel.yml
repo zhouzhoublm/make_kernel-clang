@@ -61,7 +61,7 @@ jobs:
         echo "----------------------------"
         sed s/CONFIG_LOCALVERSION=".*"/'CONFIG_LOCALVERSION="-perf-zhlhlf"'/g out/.config >>.config1
         rm -rf out/.config 
-        mv out/.config1 out
+        mv .config1 out/config
         cat out/.config | head -n 1 
         echo "----------------------------"
         make O=out CC="ccache clang" CXX="ccache clang++" ARCH=arm64 CROSS_COMPILE=$CLANG_PATH/bin/aarch64-linux-gnu- CROSS_COMPILE_ARM32=$CLANG_PATH/bin/arm-linux-gnueabi- LD=ld.lld 2>&1 | tee kernel.log
