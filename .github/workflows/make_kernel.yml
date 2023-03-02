@@ -60,7 +60,7 @@ jobs:
             echo "CONFIG_KPROBES=y" >> arch/arm64/configs/${{ github.event.inputs.KERNEL_DEFCONFIG }}
             echo "CONFIG_HAVE_KPROBES=y" >> arch/arm64/configs/${{ github.event.inputs.KERNEL_DEFCONFIG }}
             echo "CONFIG_KPROBE_EVENTS=y" >> arch/arm64/configs/${{ github.event.inputs.KERNEL_DEFCONFIG }}
-            curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+            curl -LSs "https://raw.github.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
             echo "UPLOADNAME=-KernelSU" >> $GITHUB_ENV
             
     - name: 编译内核
@@ -86,7 +86,7 @@ jobs:
         echo "----------------------"
         git clone --depth=1 https://github.com/zhlhlf/AnyKernel3 AnyKernel3
         rm -rf AnyKernel3/.git
-        mv out/arch/arm64/boot/dtbo.img AnyKernel3/
+        mv out/arch/arm64/boot/dtbo.img AnyKernel3/ || echo "没有dtbo.img"
         mv out/arch/arm64/boot/Image AnyKernel3/
         mv kernel.log AnyKernel3/
 
