@@ -7,17 +7,17 @@ on:
       KERNEL_SOURCE:
         description: 'Kernel Source'
         required: true
-        default: 'https://github.com/crdroidandroid/android_kernel_oneplus_sm8250'
+        default: 'https://github.com/APOPHIS9283/Singularity_Kernel'
         
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
         required: true
-        default: '12L'
+        default: '13'
         
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
-        default: 'vendor/kona-perf_defconfig'
+        default: 'evo_defconfig'
 
       CLANG_URL:
         description: 'Clang URL'
