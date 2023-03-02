@@ -7,7 +7,7 @@ on:
       KERNEL_SOURCE:
         description: 'Kernel Source'
         required: true
-        default: 'https://github.com/crdroidandroid/android_kernel_oneplus_sm8250'
+        default: 'https://kgithub.com/crdroidandroid/android_kernel_oneplus_sm8250'
         
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
@@ -22,7 +22,7 @@ on:
       CLANG_URL:
         description: 'Clang URL'
         required: true
-        default: 'https://github.com/ZyCromerZ/Clang/releases/download/14.0.0-20211201-release/Clang-14.0.0-20211201.tar.gz'
+        default: 'https://kgithub.com/ZyCromerZ/Clang/releases/download/14.0.0-20211201-release/Clang-14.0.0-20211201.tar.gz'
         
       USE_KERNELSU:
         description: 'Use KernelSU'
@@ -60,7 +60,7 @@ jobs:
             echo "CONFIG_KPROBES=y" >> arch/arm64/configs/${{ github.event.inputs.KERNEL_DEFCONFIG }}
             echo "CONFIG_HAVE_KPROBES=y" >> arch/arm64/configs/${{ github.event.inputs.KERNEL_DEFCONFIG }}
             echo "CONFIG_KPROBE_EVENTS=y" >> arch/arm64/configs/${{ github.event.inputs.KERNEL_DEFCONFIG }}
-            curl -LSs "https://raw.github.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+            curl -LSs "https://raw.kgithub.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
             echo "UPLOADNAME=-KernelSU" >> $GITHUB_ENV
             
     - name: 编译内核
@@ -84,7 +84,7 @@ jobs:
 
         echo "----------------------"
         echo "----------------------"
-        git clone --depth=1 https://github.com/zhlhlf/AnyKernel3 AnyKernel3
+        git clone --depth=1 https://kgithub.com/zhlhlf/AnyKernel3 AnyKernel3
         rm -rf AnyKernel3/.git
         mv out/arch/arm64/boot/dtbo.img AnyKernel3/ || echo "没有dtbo.img"
         mv out/arch/arm64/boot/Image AnyKernel3/
