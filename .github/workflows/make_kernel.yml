@@ -27,7 +27,7 @@ on:
       USE_KERNELSU:
         description: 'Use KernelSU'
         required: true
-        default: 'true'
+        default: 'false'
         type: boolean
 
 
