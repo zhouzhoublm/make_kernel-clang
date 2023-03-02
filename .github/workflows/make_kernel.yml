@@ -84,7 +84,7 @@ jobs:
 
         echo "----------------------"
         echo "----------------------"
-        git clone --depth=1 https://kgithub.com/zhlhlf/AnyKernel3 AnyKernel3
+        git clone --depth=1 https://github.com/zhlhlf/AnyKernel3 AnyKernel3
         rm -rf AnyKernel3/.git
         mv out/arch/arm64/boot/dtbo.img AnyKernel3/ || echo "没有dtbo.img"
         mv out/arch/arm64/boot/Image AnyKernel3/
