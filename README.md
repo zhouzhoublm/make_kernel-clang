@@ -27,6 +27,7 @@ https://github.com/dotOS-Devices/kernel_oneplus_sm8250
 https://github.com/Amsal1/kernel_oneplus_sm8250
 ```
 ```
+https://github.com/Project-Zephyrus/meteoric_kernel/
 ```
 ```
 ```
