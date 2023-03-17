@@ -7,27 +7,27 @@ on:
       KERNEL_SOURCE:
         description: 'Kernel Source'
         required: true
-        default: 'https://github.com/APOPHIS9283/Singularity_Kernel'
+        default: 'https://github.com/Havoc-OS-OnePlus-8-Series/kernel_oneplus_sm8250'
         
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
         required: true
-        default: '13'
+        default: 'eleven'
         
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
-        default: 'evo_defconfig'
+        default: 'vendor/kona-perf_defconfig'
 
       CLANG_URL:
         description: 'Clang URL'
         required: true
-        default: 'https://github.com/ZyCromerZ/Clang/releases/download/14.0.0-20211201-release/Clang-14.0.0-20211201.tar.gz'
+        default: 'https://github.com/ZyCromerZ/Clang/releases/download/10.0.1-20220724-release/Clang-10.0.1-20220724.tar.gz'
         
       USE_KERNELSU:
         description: 'Use KernelSU'
         required: true
-        default: 'false'
+        default: 'true'
         type: boolean
 
 
@@ -55,13 +55,8 @@ jobs:
     - name: 安装kernelSU
       if: github.event.inputs.USE_KERNELSU == 'true'
       run: |
-            cd android-kernel
-            echo "CONFIG_MODULES=y" >> arch/arm64/configs/${{ github.event.inputs.KERNEL_DEFCONFIG }}
-            echo "CONFIG_KPROBES=y" >> arch/arm64/configs/${{ github.event.inputs.KERNEL_DEFCONFIG }}
-            echo "CONFIG_HAVE_KPROBES=y" >> arch/arm64/configs/${{ github.event.inputs.KERNEL_DEFCONFIG }}
-            echo "CONFIG_KPROBE_EVENTS=y" >> arch/arm64/configs/${{ github.event.inputs.KERNEL_DEFCONFIG }}
-            curl -LSs "https://raw.github.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
-            echo "UPLOADNAME=-KernelSU" >> $GITHUB_ENV
+        cd android-kernel
+        curl -LSs "https://raw.github.com/zhlhlf/make_kernel-clang/main/susetup.sh" | bash -     
             
     - name: 编译内核
       run: |
@@ -77,11 +72,12 @@ jobs:
         make O=out CC="ccache clang" CXX="ccache clang++" ARCH=arm64 CROSS_COMPILE=$CLANG_PATH/bin/aarch64-linux-gnu- CROSS_COMPILE_ARM32=$CLANG_PATH/bin/arm-linux-gnueabi- LD=ld.lld ${{ github.event.inputs.KERNEL_DEFCONFIG }}
         echo "----------------------------"
         sed s/CONFIG_LOCALVERSION=".*"/'CONFIG_LOCALVERSION="-perf-zhlhlf"'/g out/.config >>.config1
-        rm -rf out/.config 
+        rm -rf out/.config
+        echo -e "CONFIG_KPROBES=y\nCONFIG_HAVE_KPROBES=y\nCONFIG_KPROBE_EVENTS=y" >>.config1
         mv .config1 out/.config
-        echo "----------------------------"
-        make O=out CC="ccache clang" CXX="ccache clang++" ARCH=arm64 CROSS_COMPILE=$CLANG_PATH/bin/aarch64-linux-gnu- CROSS_COMPILE_ARM32=$CLANG_PATH/bin/arm-linux-gnueabi- LD=ld.lld 2>&1 | tee kernel.log
-
+        cat out/.config
+        echo "----------------------------"        
+        make O=out CC="ccache clang" CXX="ccache clang++" ARCH=arm64 CROSS_COMPILE=$CLANG_PATH/bin/aarch64-linux-gnu- CROSS_COMPILE_ARM32=$CLANG_PATH/bin/arm-linux-gnueabi- LD=ld.lld 2>&1 | tee kernel.log               
         echo "----------------------"
         echo "----------------------"
         git clone --depth=1 https://github.com/zhlhlf/AnyKernel3 AnyKernel3
@@ -90,8 +86,12 @@ jobs:
         mv out/arch/arm64/boot/Image AnyKernel3/
         mv kernel.log AnyKernel3/
 
-    - name: Upload AnyKernel3
-      uses: actions/upload-artifact@v3
-      with:
-        name: sm8250-oplus9r
-        path: android-kernel/AnyKernel3/*
+    - name: 上传到transfer
+      run: |
+        curl -sL https://git.io/file-transfer | sh
+        mkdir zhlhlf
+        mv android-kernel/AnyKernel3/* zhlhlf
+        cd zhlhlf
+        zip -r zhlhlf_kernelsu.zip *       
+        ../transfer wet zhlhlf_kernelsu.zip
+        
