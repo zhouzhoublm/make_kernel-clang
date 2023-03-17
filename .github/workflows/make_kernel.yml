@@ -56,7 +56,7 @@ jobs:
       if: github.event.inputs.USE_KERNELSU == 'true'
       run: |
         cd android-kernel
-        curl -LSs "https://raw.github.com/zhlhlf/make_kernel-clang/main/susetup.sh" | bash -     
+        curl -LSs "https://raw.github.com/jczhl/make_kernel-clang/main/susetup.sh" | bash -     
             
     - name: 编译内核
       run: |
