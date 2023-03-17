@@ -86,12 +86,8 @@ jobs:
         mv out/arch/arm64/boot/Image AnyKernel3/
         mv kernel.log AnyKernel3/
 
-    - name: 上传到transfer
-      run: |
-        curl -sL https://git.io/file-transfer | sh
-        mkdir zhlhlf
-        mv android-kernel/AnyKernel3/* zhlhlf
-        cd zhlhlf
-        zip -r zhlhlf_kernelsu.zip ./*       
-        ../transfer wet zhlhlf_kernelsu.zip
-        
+    - name: Upload Kernel-SU
+      uses: actions/upload-artifact@v3
+      with:
+        name: oplus-sm8250-zhlhlf-ksu-${{ steps.get_time.outputs.TIME }}
+        path: "android-kernel/AnyKernel3/*"        
