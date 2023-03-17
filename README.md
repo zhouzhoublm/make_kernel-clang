@@ -18,3 +18,14 @@ https://github.com/APOPHIS9283/Singularity_Kernel
 https://github.com/YumeMichi/kernel_oneplus_sm8250
 ```
 ```
+sm8250https://github.com/PixelPlusUI-Devices/kernel_oneplus_sm8250
+```
+```
+```
+```
+```
+```
+```
+```
+```
+```
