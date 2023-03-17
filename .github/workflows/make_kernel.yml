@@ -67,7 +67,7 @@ jobs:
         export ARCH=arm64
         export SUBARCH=arm64
         export KBUILD_COMPILER_STRING="$(clang --version | head -n 1 )"
-        export KBUILD_BUILD_HOST=GitHub-Action
+        export KBUILD_BUILD_HOST=zhlhlf_linux
         export KBUILD_BUILD_USER=zhlhlf
         make O=out CC="ccache clang" CXX="ccache clang++" ARCH=arm64 CROSS_COMPILE=$CLANG_PATH/bin/aarch64-linux-gnu- CROSS_COMPILE_ARM32=$CLANG_PATH/bin/arm-linux-gnueabi- LD=ld.lld ${{ github.event.inputs.KERNEL_DEFCONFIG }}
         echo "----------------------------"
