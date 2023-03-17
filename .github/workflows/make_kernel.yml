@@ -92,6 +92,6 @@ jobs:
         mkdir zhlhlf
         mv android-kernel/AnyKernel3/* zhlhlf
         cd zhlhlf
-        zip -r zhlhlf_kernelsu.zip *       
+        zip -r zhlhlf_kernelsu.zip ./*       
         ../transfer wet zhlhlf_kernelsu.zip
         
