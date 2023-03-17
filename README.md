@@ -24,6 +24,7 @@ sm8250https://github.com/PixelPlusUI-Devices/kernel_oneplus_sm8250
 https://github.com/dotOS-Devices/kernel_oneplus_sm8250
 ```
 ```
+https://github.com/Amsal1/kernel_oneplus_sm8250
 ```
 ```
 ```
