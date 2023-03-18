@@ -90,5 +90,5 @@ jobs:
     - name: Upload Kernel-SU
       uses: actions/upload-artifact@v3
       with:
-        name: oplus-sm8250-zhlhlf-ksu-${{ steps.get_time.outputs.TIME }}
+        name: oplus-sm8250-zhlhlf-ksu
         path: "android-kernel/AnyKernel3/*"        
