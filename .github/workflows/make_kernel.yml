@@ -57,7 +57,7 @@ jobs:
       run: |
         cd android-kernel
         git apply ../KernelSU.patch
-        curl -LSs "https://raw.github.com/jczhl/make_kernel-clang/main/susetup.sh" | bash -     
+        curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
             
     - name: 编译内核
       run: |
