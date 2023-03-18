@@ -7,12 +7,12 @@ on:
       KERNEL_SOURCE:
         description: 'Kernel Source'
         required: true
-        default: 'https://github.com/Project-Zephyrus/meteoric_kernel'
+        default: 'https://github.com/Amsal1/kernel_oneplus_sm8250'
         
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
         required: true
-        default: 'rvc'
+        default: 'illusion'
         
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
@@ -56,7 +56,7 @@ jobs:
       if: github.event.inputs.USE_KERNELSU == 'true'
       run: |
         cd android-kernel
-        #git apply ../KernelSU.patch
+        git apply ../KernelSU.patch
         curl -LSs "https://raw.github.com/jczhl/make_kernel-clang/main/susetup.sh" | bash -     
             
     - name: 编译内核
