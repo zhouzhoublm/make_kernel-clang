@@ -7,17 +7,17 @@ on:
       KERNEL_SOURCE:
         description: 'Kernel Source'
         required: true
-        default: 'https://github.com/Amsal1/kernel_oneplus_sm8250'
+        default: 'https://github.com/Project-Zephyrus/meteoric_kernel'
         
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
         required: true
-        default: 'illusion'
+        default: 'rvc'
         
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
-        default: 'vendor/kona-perf_defconfig'
+        default: 'meteoric_defconfig'
 
       CLANG_URL:
         description: 'Clang URL'
