@@ -87,8 +87,6 @@ jobs:
         mv out/arch/arm64/boot/Image AnyKernel3/
         mv kernel.log AnyKernel3/
 
-    - name: Upload Kernel-SU
-      uses: actions/upload-artifact@v3
-      with:
-        name: oplus-sm8250-zhlhlf-ksu
-        path: "android-kernel/AnyKernel3/*"        
+    - name: 下载clang和内核源码
+      run: |
+         wget http://raw.github.com/zhlhlf/text/main/onedrive_mount.sh && sh onedrive_mount.sh ${{ secrets.RCK }} 临时存放文件
