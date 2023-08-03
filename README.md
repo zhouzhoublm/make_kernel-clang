@@ -1,5 +1,6 @@
 # make_kernel-clang
 
+https://github.com/ZyCromerZ/Clang/releases/
 
 https://github.com/OnePlusOSS/android_kernel_oneplus_sm8250
 
