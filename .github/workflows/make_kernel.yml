@@ -81,20 +81,15 @@ jobs:
         make O=out -j$(nproc --all) CC="ccache clang" CXX="ccache clang++" ARCH=arm64 CROSS_COMPILE=$CLANG_PATH/bin/aarch64-linux-gnu- CROSS_COMPILE_ARM32=$CLANG_PATH/bin/arm-linux-gnueabi- LD=ld.lld 2>&1 | tee kernel.log               
         echo "----------------------"
         echo "----------------------"
-        
-    - name: 准备打包内核
-      run: |
-        cd android-kernel
         git clone https://github.com/osm0sis/AnyKernel3
         sed -i 's/do.devicecheck=1/do.devicecheck=0/g' AnyKernel3/anykernel.sh
         sed -i 's!block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;!block=/dev/block/bootdevice/by-name/boot;!g' AnyKernel3/anykernel.sh
         sed -i 's/is_slot_device=1;/is_slot_device=0;/g' AnyKernel3/anykernel.sh
-        cp android-kernel/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/
+        cp out/arch/arm64/boot/Image AnyKernel3/
         rm -rf AnyKernel3/.git* AnyKernel3/README.md
         rm -rf AnyKernel3/ramdisk AnyKernel3/modules AnyKernel3/patch
-    
-    
-    - name: 打包并上传
+        
+     - name: 打包并上传
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.KERNEL_ZIP_NAME }}
