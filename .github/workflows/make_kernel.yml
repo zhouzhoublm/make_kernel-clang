@@ -82,13 +82,11 @@ jobs:
         echo "----------------------"
         echo "----------------------"
         git clone https://github.com/osm0sis/AnyKernel3
-        sed -i 's/do.devicecheck=1/do.devicecheck=0/g' AnyKernel3/anykernel.sh
-        sed -i 's!block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;!block=/dev/block/bootdevice/by-name/boot;!g' AnyKernel3/anykernel.sh
-        sed -i 's/is_slot_device=1;/is_slot_device=0;/g' AnyKernel3/anykernel.sh
-        cp out/arch/arm64/boot/Image AnyKernel3/
-        rm -rf AnyKernel3/.git* AnyKernel3/README.md
-        rm -rf AnyKernel3/ramdisk AnyKernel3/modules AnyKernel3/patch
-        
+        rm -rf AnyKernel3/.git
+        mv out/arch/arm64/boot/dtbo.img AnyKernel3/ || echo "没有dtbo.img"
+        mv out/arch/arm64/boot/Image AnyKernel3/
+        mv kernel.log AnyKernel3/
+
     - name: 打包并上传
       uses: actions/upload-artifact@v3
       with:
