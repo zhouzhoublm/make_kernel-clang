@@ -89,7 +89,7 @@ jobs:
         rm -rf AnyKernel3/.git* AnyKernel3/README.md
         rm -rf AnyKernel3/ramdisk AnyKernel3/modules AnyKernel3/patch
         
-     - name: 打包并上传
+    - name: 打包并上传
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.KERNEL_ZIP_NAME }}
